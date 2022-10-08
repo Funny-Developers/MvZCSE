@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MvZCSE")]
-[assembly: AssemblyProduct("MvZCSE")]
+[assembly: AssemblyTitle("MvZXNAE")]
+[assembly: AssemblyProduct("MvZXNAE")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // On Windows, the following GUID is for the ID of the typelib if this
 // project is exposed to COM. On other platforms, it unique identifies the
 // title storage container when deploying this assembly to the device.
-[assembly: Guid("404a1f25-54ab-45d3-b450-595a05d1c4a6")]
+[assembly: Guid("7bc070e2-9d20-46ae-be23-9255ba2a8084")]
 
 // Version information for an assembly consists of the following four values:
 //
