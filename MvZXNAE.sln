@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.2092
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvZXNAE", "MvZXNAE\MvZXNAE\MvZXNAE.csproj", "{7BC070E2-9D20-46AE-BE23-9255BA2A8084}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "MvZXNAEContent", "MvZXNAE\MvZXNAEContent\MvZXNAEContent.contentproj", "{BE190719-2894-4A7B-93B6-723A4CC85892}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvZXNAEContent", "MvZXNAE\MvZXNAEContent\MvZXNAEContent.contentproj", "{BE190719-2894-4A7B-93B6-723A4CC85892}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

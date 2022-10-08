@@ -16,10 +16,12 @@ namespace MvZXNAE
     /// </summary>
     public class GameMain : Game
     {
-        public static GraphicsDeviceManager graphics;
+        GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
         public static SpriteFont defaultFont;
         Color backgoundColor;
+        SoundEffect menuBGM;
+        SoundEffectInstance bgmInstance;
 
         Texture2D buttonNormal;
         Texture2D buttonMoveOver;
@@ -50,11 +52,13 @@ namespace MvZXNAE
             buttonPressed = Content.Load<Texture2D>("ButtonPressed");//按钮按下
             button = buttonNormal;
             buttonRect = new Rectangle(300, 200, 128, 128);
+            menuBGM = Content.Load<SoundEffect>("MainMenu");
+            bgmInstance = menuBGM.CreateInstance();
         }
 
         protected override void UnloadContent()
         {
-
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -98,6 +102,7 @@ namespace MvZXNAE
                 }
                 backgoundColor = Color.CornflowerBlue;//放开鼠标左键恢复成蓝色 
             }
+            if (bgmInstance.State == SoundState.Stopped) bgmInstance.Play();
             base.Update(gameTime);
         }
 
