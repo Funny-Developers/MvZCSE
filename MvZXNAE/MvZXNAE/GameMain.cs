@@ -19,7 +19,6 @@ namespace MvZXNAE
         GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
         public static SpriteFont defaultFont;
-        Color backgoundColor;
         SoundEffect menuBGM;
         SoundEffectInstance bgmInstance;
 
@@ -64,7 +63,6 @@ namespace MvZXNAE
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keyboardState = Keyboard.GetState(PlayerIndex.One);
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) Exit();
             if (keyboardState.IsKeyDown(Keys.F11))
             {
                 graphics.IsFullScreen = !graphics.IsFullScreen;
@@ -83,10 +81,10 @@ namespace MvZXNAE
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)//判断是否按下了鼠标左键
             {
-                backgoundColor = Color.Red;//将背景设置为红色
                 if (buttonRect.Contains(mouseState.X, mouseState.Y))//判断鼠标是否移动到按钮上并且按下
                 {
                     button = buttonPressed;//将按钮设置为按下状态
+                    
                 }
             }
             else
@@ -99,7 +97,6 @@ namespace MvZXNAE
                 {
                     button = buttonNormal;//将按钮设置为正常状态
                 }
-                backgoundColor = Color.CornflowerBlue;//放开鼠标左键恢复成蓝色 
             }
             if (bgmInstance.State == SoundState.Stopped) bgmInstance.Play();
             base.Update(gameTime);
