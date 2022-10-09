@@ -80,8 +80,7 @@ namespace MvZXNAE
                 }
                 graphics.ApplyChanges();
             }
-
-            MouseState mouseState = Mouse.GetState();//获取鼠标状态
+            MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)//判断是否按下了鼠标左键
             {
                 backgoundColor = Color.Red;//将背景设置为红色
@@ -108,12 +107,25 @@ namespace MvZXNAE
 
         protected override void Draw(GameTime gameTime)
         {
+            bool isF3Down = false;
+            KeyboardState keyboardState = Keyboard.GetState(PlayerIndex.One);
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            DebugScreen.debugScreen();
+            if (keyboardState.IsKeyDown(Keys.F3))
+            {
+                isF3Down = !isF3Down;
+            }
+            debugScreen(isF3Down);
             spriteBatch.Draw(button, buttonRect, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        void debugScreen(bool e)
+        {
+            MouseState mouseState = Mouse.GetState();
+            if (e) spriteBatch.DrawString(defaultFont, $"v1.0\nMouse position: x:{mouseState.X} y:{mouseState.Y}\nGraphic: {GraphicsAdapter.DefaultAdapter.Description}\nFPS:", Vector2.Zero, Color.Black);
+            else spriteBatch.DrawString(defaultFont, "v1.0", Vector2.Zero, Color.Black);
         }
     }
 }
