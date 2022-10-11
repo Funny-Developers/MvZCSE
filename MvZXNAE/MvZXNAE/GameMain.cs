@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace MvZXNAE
 {
@@ -18,8 +12,6 @@ namespace MvZXNAE
         public static SpriteFont defaultFont;
         SoundEffect menuBGM;
         SoundEffectInstance bgmInstance;
-        GameComponentCollection components;
-        DrawableGameComponent titleScreen;
         Texture2D buttonNormal;
         Texture2D buttonMoveOver;
         Texture2D buttonPressed;
@@ -28,9 +20,6 @@ namespace MvZXNAE
 
         public GameMain()
         {
-            components = new GameComponentCollection();
-            titleScreen = new TitleScreen(this);
-            components.Add(titleScreen);
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
@@ -108,8 +97,6 @@ namespace MvZXNAE
             bool isF3Down = false;
             KeyboardState keyboardState = Keyboard.GetState(PlayerIndex.One);
             spriteBatch.Begin();
-            titleScreen.Draw(gameTime);
-            titleScreen.Dispose();
             if (keyboardState.IsKeyDown(Keys.F3))
             {
                 isF3Down = !isF3Down;
@@ -122,7 +109,6 @@ namespace MvZXNAE
 
         void debugScreen(bool e)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
             MouseState mouseState = Mouse.GetState();
             if (e) spriteBatch.DrawString(defaultFont, $"v1.0\nMouse position: x:{mouseState.X} y:{mouseState.Y}\nGraphic: {GraphicsAdapter.DefaultAdapter.Description}\nFPS:", Vector2.Zero, Color.Black);
             else spriteBatch.DrawString(defaultFont, "v1.0", Vector2.Zero, Color.Black);
