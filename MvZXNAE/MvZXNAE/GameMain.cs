@@ -8,8 +8,8 @@ namespace MvZXNAE
     public class GameMain : Game
     {
         GraphicsDeviceManager graphics;
-        public static SpriteBatch spriteBatch;
-        public static SpriteFont defaultFont;
+        SpriteBatch spriteBatch;
+        SpriteFont defaultFont;
         SoundEffect menuBGM;
         SoundEffectInstance bgmInstance;
         Texture2D buttonNormal;
@@ -17,6 +17,9 @@ namespace MvZXNAE
         Texture2D buttonPressed;
         Rectangle buttonRect;
         Texture2D button;
+        bool debugScreenVisable;
+        public static KeyboardState keyboardState;
+        public KeyboardState keyCache;
 
         public GameMain()
         {
@@ -89,29 +92,34 @@ namespace MvZXNAE
                 }
             }
             if (bgmInstance.State == SoundState.Stopped) bgmInstance.Play();
+            spriteBatch.Begin();
+            IsF3KeyPressed(gameTime);
+            DebugScreen(debugScreenVisable);
+            spriteBatch.End();
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            bool isF3Down = false;
-            KeyboardState keyboardState = Keyboard.GetState(PlayerIndex.One);
             spriteBatch.Begin();
-            if (keyboardState.IsKeyDown(Keys.F3))
-            {
-                isF3Down = !isF3Down;
-            }
-            debugScreen(isF3Down);
             spriteBatch.Draw(button, buttonRect, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
-        void debugScreen(bool e)
+        void DebugScreen(bool e) // draw the debug screen
         {
             MouseState mouseState = Mouse.GetState();
             if (e) spriteBatch.DrawString(defaultFont, $"v1.0\nMouse position: x:{mouseState.X} y:{mouseState.Y}\nGraphic: {GraphicsAdapter.DefaultAdapter.Description}\nFPS:", Vector2.Zero, Color.Black);
             else spriteBatch.DrawString(defaultFont, "v1.0", Vector2.Zero, Color.Black);
+        }
+
+        void IsF3KeyPressed(GameTime gameTime)
+        {
+            if (keyboardState.IsKeyDown(Keys.F3) == true)
+            {
+                debugScreenVisable = !debugScreenVisable;
+            }
         }
     }
 }
